@@ -1,7 +1,7 @@
 {
-  "name": "TahiriFamily",
+  "name": "oussouss",
   "version": "1.0.0",
-  "description": "QuickStart package.json from the documentation, supplemented with testing support",
+  "description": "A Family Social network Project, you can find the latest news's Family and pictures, Enjoy ;)",
   "scripts": {
     "start": "tsc && concurrently \"tsc -w\" \"lite-server\" ",
     "e2e": "tsc && concurrently \"http-server -s\" \"protractor protractor.config.js\" --kill-others --success first",
