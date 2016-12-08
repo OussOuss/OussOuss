@@ -1,11 +1,14 @@
 
 import { NgModule } from '@angular/core';
-import { CommonModule }       from '@angular/common';
-import { PicturesComponent } from './pictures.component';
 
+import { SharedModule } from '../shared-module/shared.module';
+
+import { PicturesComponent } from './pictures.component';
+import { PicturesRoutingModule } from './pictures-routing.module';
 @NgModule({
     imports: [
-        CommonModule
+        SharedModule,
+        PicturesRoutingModule
     ],
     declarations: [
         PicturesComponent

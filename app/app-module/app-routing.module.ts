@@ -2,9 +2,9 @@ import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 
 
-const routes: Routes = [
+export const routes: Routes = [
     { path: '', redirectTo: 'members', pathMatch: 'full'},
-    { path: 'pictures', loadChildren: 'app/pictures-module/pictures.module#PictureModule' }
+    { path: 'pictures', loadChildren: 'app/pictures-module/pictures.module#PicturesModule' }
 
 ];
 @NgModule({

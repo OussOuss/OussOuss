@@ -29,7 +29,7 @@ export class MembersComponent implements OnInit {
   }
 
   gotoDetail(): void {
-    this.router.navigate(['/detail', this.selectedMember.id]);
+    this.router.navigate(['members', this.selectedMember.id]);
   }
 
   add(name: string): void {
