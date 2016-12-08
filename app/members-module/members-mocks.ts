@@ -7,5 +7,6 @@ export const MEMBERS: Member[] = [
   { id: 4, name: 'Yasser' },
   { id: 5, name: 'Zakaria' },
   { id: 6, name: 'Imane' },
-  { id: 7, name: 'Omayma' }
+  { id: 7, name: 'Omayma' },
+  { id: 8, name: 'Salma' }
 ];

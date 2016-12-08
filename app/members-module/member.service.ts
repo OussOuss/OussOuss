@@ -15,7 +15,7 @@ export class MemberService {
     constructor(private http: Http) { }
 
     getMember(id: number): Promise<Member> {
-        return this.getMembers()
+        return this.getMembersHttp()
             .then(members => members.find(member => member.id === id));
     }
 

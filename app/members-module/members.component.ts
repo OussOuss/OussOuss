@@ -18,14 +18,15 @@ export class MembersComponent implements OnInit {
   title = 'Tahiri\'s Family';
 
   constructor(private router: Router, private memberService: MemberService) {
-  }
-
-  ngOnInit(): void {
     this.memberService.getMembersHttp().then(members => this.members = members);
   }
 
+  ngOnInit(): void {
+    
+  }
+
   onSelect(member: Member): void {
-    console.log("je suis la "+this.selectedMember.id);
+    
     this.selectedMember = member;
     this.router.navigate(['members', this.selectedMember.id]);
   }

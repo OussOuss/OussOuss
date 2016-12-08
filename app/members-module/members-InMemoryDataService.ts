@@ -9,7 +9,7 @@ export class MembersInMemoryDataService implements InMemoryDbService {
             { id: 5, name: 'Zakaria' },
             { id: 6, name: 'Imane' },
             { id: 7, name: 'Omayma' },
-            { id: 8, name: 'Salma' },
+            { id: 8, name: 'Salma' }
         ];
         return { members };
     }
