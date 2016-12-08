@@ -26,11 +26,9 @@ export class MembersComponent implements OnInit {
 
   onSelect(member: Member): void {
     this.selectedMember = member;
-  }
-
-  gotoDetail(): void {
     this.router.navigate(['members', this.selectedMember.id]);
   }
+
 
   add(name: string): void {
     name = name.trim();

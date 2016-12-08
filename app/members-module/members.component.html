@@ -1,21 +1,20 @@
-<ul class="members">
-    <li *ngFor="let member of members" (click)="onSelect(member)" [class.selected]="member === selectedMember">
-        <span class="badge">{{member.id}}</span> <span>{{member.name}}</span>
-        <button class="delete" (click)="delete(member); $event.stopPropagation()">x</button>
-    </li>
-</ul>
-
-<div *ngIf="selectedMember">
-    <h2>
-        {{selectedMember.name | uppercase}} is my best member
-    </h2>
-    <button (click)="gotoDetail()">View Details</button>
+<div class="row">
+    <div class="col-md-6">
+        <ul class="members list-group">
+            <a href="#" *ngFor="let member of members" (click)="onSelect(member); false;" [class.selected]="member === selectedMember"
+                class="list-group-item">
+                <span class="badge">{{member.id}}</span> <strong>{{member.name}}</strong>
+                <button class="btn btn-default" (click)="delete(member); $event.stopPropagation()">x</button>
+            </a>
+        </ul>
+    </div>
+    <div class="col-md-6" *ngIf="selectedMember">
+        <member-detail ["member"]="selectedMember"></member-detail>
+        <router-outlet></router-outlet>
+    </div>
 </div>
 
-<div>
+<div class="row">
     <label>Member name:</label> <input #memberName />
-    <button (click)="add(memberName.value); memberName.value=''">
-    Add
-  </button>
+    <button class="btn btn-info" (click)="add(memberName.value); memberName.value=''"> Add </button>
 </div>
-<router-outlet></router-outlet>

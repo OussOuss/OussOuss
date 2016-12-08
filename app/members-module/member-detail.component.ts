@@ -1,4 +1,4 @@
-import { Component, Input, OnInit } from '@angular/core';
+import { Component,Input, OnInit } from '@angular/core';
 import { ActivatedRoute, Params } from '@angular/router';
 import { Location } from '@angular/common';
 import 'rxjs/add/operator/switchMap';
@@ -13,7 +13,7 @@ import { MemberService } from './member.service';
   styleUrls: ['member-detail.component.css']
 })
 export class MemberDetailComponent implements OnInit {
-  @Input()
+  @Input
   member: Member;
 
   constructor(
