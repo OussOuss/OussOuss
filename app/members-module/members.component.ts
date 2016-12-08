@@ -25,6 +25,7 @@ export class MembersComponent implements OnInit {
   }
 
   onSelect(member: Member): void {
+    console.log("je suis la "+this.selectedMember.id);
     this.selectedMember = member;
     this.router.navigate(['members', this.selectedMember.id]);
   }
