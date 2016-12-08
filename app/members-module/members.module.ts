@@ -1,7 +1,6 @@
 import './rxjs-extensions';
 
 import { NgModule } from '@angular/core';
-import { CommonModule }       from '@angular/common';
 import { FormsModule }        from '@angular/forms';
 
 import { RouterModule }        from '@angular/router';
@@ -12,13 +11,15 @@ import { InMemoryWebApiModule } from 'angular-in-memory-web-api';
 import { MembersInMemoryDataService }  from './members-InMemoryDataService';
 
 import { MemberService } from './member.service';
-import { MembersComponent } from './members-component';
+import { MembersComponent } from './members.component';
 import { MemberDetailComponent } from './member-detail.component';
 import { MemberSearchComponent } from './member-search.component';
 
+import { SharedModule }       from '../shared-module/shared.module';
+
 @NgModule({
     imports: [
-        CommonModule,
+        SharedModule,
         FormsModule,
         HttpModule,
         InMemoryWebApiModule.forRoot(MembersInMemoryDataService),
