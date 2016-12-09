@@ -25,7 +25,7 @@ export class MembersComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    this.memberService.getMembersHttp().then(members => this.members = members);
+    this.memberService.getMembersHttp().then(members =>{ this.members = members; this.membersFinal = this.members;});
   }
 
   onSelect(member: Member): void {
@@ -42,6 +42,7 @@ export class MembersComponent implements OnInit {
     this.memberService.create(name)
       .then(member => {
         this.members.push(member);
+        this.membersFinal.push(member);
         this.selectedMember = null;
       });
   }
@@ -51,6 +52,7 @@ export class MembersComponent implements OnInit {
       .delete(member.id)
       .then(() => {
         this.members = this.members.filter(h => h !== member);
+        this.membersFinal = this.membersFinal.filter(h => h !== member);
         if (this.selectedMember === member) { this.selectedMember = null; }
       });
   }
@@ -59,14 +61,11 @@ export class MembersComponent implements OnInit {
 
     this.selectedMember = null;
     
-    if (!this.membersFinal) {
-      this.membersFinal = this.members;
-    }
     if (!name.trim() || 0 === name.trim().length) {
       this.members = this.membersFinal;
     }
     else {
-      this.members = this.members.filter(m => m.name.indexOf(name) !== -1);
+      this.members = this.members.filter(member => member.name.toUpperCase().indexOf(name.toUpperCase()) !== -1);
     }
   }
 
