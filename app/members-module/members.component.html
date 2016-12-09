@@ -1,5 +1,19 @@
 <div class="row">
     <div class="col-md-3">
+        <div id="members-search-input">
+            <div class="input-group col-md-12">
+                <input #membersSearch  type="text" class="form-control input-lg" placeholder="Member search field" (keyup)="getMembersSearch(membersSearch.value)" />
+                <span class="input-group-btn">
+                        <button class="btn btn-info btn-lg disabled" type="button">
+                            <i class="glyphicon glyphicon-search"></i>
+                        </button>
+                    </span>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="row">
+    <div class="col-md-3">
         <ul class="members list-group">
             <a href="javascript:void(0)" *ngFor="let member of members" (click)="onSelect(member);" [class.selected]="member === selectedMember"
                 class="list-group-item">
@@ -8,12 +22,19 @@
             </a>
         </ul>
     </div>
-    <div class="col-md-9" >
-        <router-outlet ></router-outlet>
+    <div class="col-md-9">
+        <div *ngIf="selectedMember">
+            <h2>
+                {{selectedMember.name | uppercase}} is my best member
+            </h2>
+            <button (click)="updateMember()">Member Detail</button>
+        </div>
     </div>
 </div>
 
 <div class="row">
-    <label>Member name:</label> <input #memberName />
-    <button class="btn btn-info" (click)="add(memberName.value); memberName.value=''"> Add </button>
+    <div class="col-md-3">
+        <label>Member name:</label> <input #memberName />
+        <button class="btn btn-info" (click)="add(memberName.value); memberName.value=''"> Add </button>
+    </div>
 </div>

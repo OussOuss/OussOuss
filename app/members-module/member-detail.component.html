@@ -1,5 +1,4 @@
-<div class="member-detail">
-    <div *ngIf="member">
+<div class="member-detail" *ngIf="member">
         <h1>{{member.name}} details!</h1>
         <div><label>id: </label>{{member.id}}</div>
         <div>
@@ -8,8 +7,4 @@
         </div>
         <button (click)="save()">Save</button>
         <button (click)="goBack()">Back</button>
-    </div>
-    <div class="alert alert-danger" *ngIf="!member">
-        Impossible de trouver ce membre !!
-    </div>
 </div>

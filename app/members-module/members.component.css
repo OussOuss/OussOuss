@@ -9,8 +9,12 @@
 }
 
 .members.list-group {
-    margin-top: 20px;
+    margin-top: 5px;
 }
 .members.list-group a{
     overflow: hidden;
+}
+
+#members-search-input {
+    margin-top: 10px;
 }
