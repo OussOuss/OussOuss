@@ -1,33 +1,26 @@
 import { Injectable } from '@angular/core';
 import { Headers, Http } from '@angular/http';
-
+import { Observable }        from 'rxjs/Observable';
 import 'rxjs/add/operator/toPromise';
 
 import { Member } from './member';
-import { MEMBERS } from './members-mocks';
 
 @Injectable()
 export class MemberService {
 
-    private membersUrl = 'app/members';
+    private membersUrl = 'http://localhost:8000/members';
     private headers = new Headers({ 'Content-Type': 'application/json' });
 
     constructor(private http: Http) { }
 
-    getMember(id: number): Promise<Member> {
-        return this.getMembersHttp()
-            .then(members => members.find(member => member.id === id));
+    getMember(id: number): Observable<Member> {
+         return this.http.get(this.membersUrl+"/"+id).
+            map(response => response.json() as Member[]) .catch(this.handleError);
     }
 
-    getMembers(): Promise<Member[]> {
-        return Promise.resolve(MEMBERS);
-    }
-
-    getMembersHttp(): Promise<Member[]> {
-        return this.http.get(this.membersUrl)
-            .toPromise()
-            .then(response => response.json().data as Member[])
-            .catch(this.handleError);
+    getMembersHttp(): Observable<Member[]> {
+        return this.http.get(this.membersUrl).
+            map(response => response.json() as Member[]) .catch(this.handleError);
     }
 
     private handleError(error: any): Promise<any> {
@@ -35,34 +28,25 @@ export class MemberService {
         return Promise.reject(error.message || error);
     }
 
-    getMembersSlowly(): Promise<Member[]> {
-        return new Promise<Member[]>(resolve =>
-            setTimeout(resolve, 2000)) // delay 2 seconds
-            .then(() => this.getMembers());
-    }
-
-    update(member: Member): Promise<Member> {
-        const url = `${this.membersUrl}/${member.id}`;
+    update(member: Member): Observable<Member> {
+        const url = `${this.membersUrl}/${member.memberId}`;
         return this.http
             .put(url, JSON.stringify(member), { headers: this.headers })
-            .toPromise()
-            .then(() => member)
+            .map(() => member)
             .catch(this.handleError);
     }
 
-    create(name: string): Promise<Member> {
+    create(name: string): Observable<Member> {
         return this.http
             .post(this.membersUrl, JSON.stringify({ name: name }), { headers: this.headers })
-            .toPromise()
-            .then(res => res.json().data)
+            .map(res => {res.json()})
             .catch(this.handleError);
     }
 
-    delete(id: number): Promise<void> {
+    delete(id: number): Observable<void> {
         const url = `${this.membersUrl}/${id}`;
         return this.http.delete(url, { headers: this.headers })
-            .toPromise()
-            .then(() => null)
+            .map(() => null)
             .catch(this.handleError);
     }
 

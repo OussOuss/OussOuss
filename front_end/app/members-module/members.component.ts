@@ -25,7 +25,7 @@ export class MembersComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    this.memberService.getMembersHttp().then(members =>{ this.members = members; this.membersFinal = this.members.slice();});
+    this.memberService.getMembersHttp().subscribe(members => { if (members) { this.members = members; this.membersFinal = this.members.slice(); } });
   }
 
   onSelect(member: Member): void {
@@ -33,24 +33,27 @@ export class MembersComponent implements OnInit {
   }
 
   updateMember() {
-    this.router.navigate(['members', this.selectedMember.id]);
+    this.router.navigate(['members', this.selectedMember.memberId]);
   }
 
   add(name: string): void {
     name = name.trim();
     if (!name) { return; }
     this.memberService.create(name)
-      .then(member => {
-        this.members.push(member);
-        this.membersFinal.push(member);
-        this.selectedMember = null;
+      .subscribe(member => {
+        if (member){
+          this.members.push(member);
+          this.membersFinal.push(member);
+          this.selectedMember = null;
+        }
+
       });
   }
 
   delete(member: Member): void {
     this.memberService
-      .delete(member.id)
-      .then(() => {
+      .delete(member.memberId)
+      .subscribe(() => {
         this.members = this.members.filter(h => h !== member);
         this.membersFinal = this.membersFinal.filter(h => h !== member);
         if (this.selectedMember === member) { this.selectedMember = null; }
@@ -60,7 +63,7 @@ export class MembersComponent implements OnInit {
   getMembersSearch(name: string) {
 
     this.selectedMember = null;
-    
+
     if (!name.trim() || 0 === name.trim().length) {
       this.members = this.membersFinal.slice();
     }

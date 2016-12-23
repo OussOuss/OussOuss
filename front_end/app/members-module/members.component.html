@@ -17,7 +17,7 @@
         <ul class="members list-group">
             <a href="javascript:void(0)" *ngFor="let member of members" (click)="onSelect(member);" [class.selected]="member === selectedMember"
                 class="list-group-item">
-                <span class="badge">{{member.id}}</span> <strong>{{member.name}}</strong>
+                     <span class="badge">{{member.memberId}}</span><strong>{{member.name}}</strong>
                 <button class="btn btn-default" (click)="delete(member); $event.stopPropagation()">x</button>
             </a>
         </ul>

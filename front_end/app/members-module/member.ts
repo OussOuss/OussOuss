@@ -1,4 +1,4 @@
 export class Member {
-  id: number;
+  memberId: number;
   name: string;
 }
