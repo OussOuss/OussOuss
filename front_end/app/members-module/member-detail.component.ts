@@ -29,7 +29,7 @@ export class MemberDetailComponent implements OnInit {
   ngOnInit(): void {
     this.route.params
       .switchMap((params: Params) => this.memberService.getMember(+params['id']))
-      .subscribe(member => this.member = member);
+      .subscribe(member => {this.member = member});
   }
 
   save(): void {

@@ -1,6 +1,5 @@
-'use strict';
-
 const Hapi = require('hapi');
+const mongoskin = require('mongoskin');
 
 // Create a server with a host and port
 const server = new Hapi.Server();
@@ -13,7 +12,7 @@ server.connection({
 
 });
 
-const mongoskin = require('mongoskin');
+
 
 const db = mongoskin.db('mongodb://@localhost:27017/oussouss', { safe: true })
 const id = mongoskin.helper.toObjectID
@@ -24,19 +23,13 @@ let loadCollection = function (name, callback) {
     callback(db.collection(name))
 }
 
-let getMaxId = function (collectionName) {
-    loadCollection(collectionName, function (collection) {
-        return collection.find().sort({id:-1}).limit(1);
-    });
-}
-
 server.route([
     {
         method: 'GET',
         path: '/{collectionName}',
         handler: function (req, reply) {
             loadCollection(req.params.collectionName, function (collection) {
-                collection.find({ _id: { $ne: sequenceName } }).toArray(function (e, results) {
+                collection.find().toArray(function (e, results) {
                     if (e) return reply(e);
                     reply(results);
                 })
@@ -48,7 +41,7 @@ server.route([
         path: '/{collectionName}/{id}',
         handler: function (req, reply) {
             loadCollection(req.params.collectionName, function (collection) {
-                collection.find({ _id: +req.params.id }).toArray(function (e, result) {
+                collection.findOne({ memberId: +req.params.id }, function (e, result) {
                     if (e) return reply(e);
                     reply(result);
                 })
@@ -60,15 +53,20 @@ server.route([
         path: '/{collectionName}',
         handler: function (req, reply) {
             loadCollection(req.params.collectionName, function (collection) {
-                let member = {
-                    id:getMaxId(req.params.collectionName),
-                    name:req.name
-                };
-                console.log(member.id);
-                collection.insert(member, {}, function (e, results) {
-                    if (e) return reply(e)
-                    reply(member);
-                })
+
+                //retourner l'id Max de la table membre
+                collection.find().sort({ memberId: -1 }).limit(1).toArray(function (e, results) {
+                    let member = {
+                        memberId : 1 + results[0].memberId,
+                        name : req.payload.name
+                    };
+                    collection.insert(member, {}, function (e, results) {
+                        if (e) return reply(e)
+                        reply(member);
+                    })
+                });
+
+
             })
         }
     },
@@ -77,9 +75,13 @@ server.route([
         path: '/{collectionName}/{id}',
         handler: function (req, reply) {
             loadCollection(req.params.collectionName, function (collection) {
-                collection.update({ _id: id(req.params.id) },
-                    { $set: req.payload },
+                let member = {
+                    name: req.payload.name
+                };
+                collection.update({ memberId: +req.params.id },
+                    { $set: member },
                     { safe: true, multi: false }, function (e, result) {
+
                         if (e) return reply(e)
                         reply((result === 1) ? { msg: 'success' } : { msg: 'error' })
                     })
@@ -91,7 +93,7 @@ server.route([
         path: '/{collectionName}/{id}',
         handler: function (req, reply) {
             loadCollection(req.params.collectionName, function (collection) {
-                collection.remove({ _id: id(req.params.id) }, function (e, result) {
+                collection.remove({ memberId: +req.params.id }, function (e, result) {
                     if (e) return reply(e)
                     reply((result === 1) ? { msg: 'success' } : { msg: 'error' })
                 })

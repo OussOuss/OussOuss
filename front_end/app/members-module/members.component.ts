@@ -41,6 +41,7 @@ export class MembersComponent implements OnInit {
     if (!name) { return; }
     this.memberService.create(name)
       .subscribe(member => {
+        console.log(member);
         if (member){
           this.members.push(member);
           this.membersFinal.push(member);
