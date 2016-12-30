@@ -42,7 +42,7 @@ export class MembersComponent implements OnInit {
     this.memberService.create(name)
       .subscribe(member => {
         console.log(member);
-        if (member){
+        if (member) {
           this.members.push(member);
           this.membersFinal.push(member);
           this.selectedMember = null;
@@ -64,13 +64,9 @@ export class MembersComponent implements OnInit {
   getMembersSearch(name: string) {
 
     this.selectedMember = null;
+    this.members = this.membersFinal;
+    this.members = this.members.filter(member => member.name.toUpperCase().indexOf(name.toUpperCase()) !== -1);
 
-    if (!name.trim() || 0 === name.trim().length) {
-      this.members = this.membersFinal.slice();
-    }
-    else {
-      this.members = this.members.filter(member => member.name.toUpperCase().indexOf(name.toUpperCase()) !== -1);
-    }
   }
 
 
