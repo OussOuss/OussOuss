@@ -1,0 +1,35 @@
+0 info it worked if it ends with ok
+1 verbose cli [ 'C:\\YBouraze\\apps\\nodejs\\node.exe',
+1 verbose cli   'C:\\YBouraze\\apps\\nodejs\\node_modules\\npm\\bin\\npm-cli.js',
+1 verbose cli   'start' ]
+2 info using npm@3.10.8
+3 info using node@v6.9.1
+4 verbose run-script [ 'prestart', 'start', 'poststart' ]
+5 info lifecycle back-end@1.0.0~prestart: back-end@1.0.0
+6 silly lifecycle back-end@1.0.0~prestart: no script for prestart, continuing
+7 info lifecycle back-end@1.0.0~start: back-end@1.0.0
+8 verbose lifecycle back-end@1.0.0~start: unsafe-perm in lifecycle true
+9 verbose lifecycle back-end@1.0.0~start: PATH: C:\YBouraze\apps\nodejs\node_modules\npm\bin\node-gyp-bin;C:\Users\EX580\Desktop\Divers\angularjs\OussOuss\back_end\node_modules\.bin;C:\Program Files\ConEmu\ConEmu\Scripts;C:\Program Files\ConEmu;C:\Program Files\ConEmu\ConEmu;C:\ProgramData\Oracle\Java\javapath;C:\oracle\product\11.2.0\client_1\bin;C:\Windows\system32;C:\Windows;C:\Windows\System32\Wbem;C:\Windows\System32\WindowsPowerShell\v1.0\;C:\Program Files (x86)\IBM\Client Access\Emulator;C:\Program Files (x86)\IBM\Client Access\Shared;C:\Program Files (x86)\IBM\Client Access\;C:\Program Files (x86)\WinSCP\PuTTY;C:\Program Files (x86)\Novell\GroupWise;C:\YBouraze\apps\apache-maven-3.3.3\bin;C:\YBouraze\apps\apache-tomcat-7.0.52\bin;C:\YBouraze\apps\jad;C:\Program Files\Oracle\VirtualBox;C:\YBouraze\apps\curl-7.40.0-openssl-libssh2-zlib-x64;C:\YBouraze\apps\nodejs\;C:\Program Files\TortoiseSVN\bin;C:\dev\jdk160_21\bin;C:\Users\EX580\AppData\Roaming\npm;C:\Program Files (x86)\Microsoft VS Code\bin;C:\Users\EX580\AppData\Local\Programs\Git\cmd;C:\Program Files\MongoDB\Server\3.4\bin
+10 verbose lifecycle back-end@1.0.0~start: CWD: C:\Users\EX580\Desktop\Divers\angularjs\OussOuss\back_end
+11 silly lifecycle back-end@1.0.0~start: Args: [ '/d /s /c', 'node server.js' ]
+12 verbose stack Error: kill ENOSYS
+12 verbose stack     at exports._errnoException (util.js:1026:11)
+12 verbose stack     at process.kill (internal/process.js:172:13)
+12 verbose stack     at process.listener (C:\YBouraze\apps\nodejs\node_modules\npm\node_modules\npmlog\node_modules\gauge\node_modules\signal-exit\index.js:86:15)
+12 verbose stack     at emitNone (events.js:91:20)
+12 verbose stack     at process.emit (events.js:185:7)
+12 verbose stack     at processEmit (C:\YBouraze\apps\nodejs\node_modules\npm\node_modules\npmlog\node_modules\gauge\node_modules\signal-exit\index.js:146:32)
+12 verbose stack     at processEmit (C:\YBouraze\apps\nodejs\node_modules\npm\node_modules\npm-registry-client\node_modules\npmlog\node_modules\gauge\node_modules\signal-exit\index.js:146:32)
+12 verbose stack     at Signal.wrap.onsignal (internal/process.js:199:44)
+13 verbose cwd C:\Users\EX580\Desktop\Divers\angularjs\OussOuss\back_end
+14 error Windows_NT 6.1.7601
+15 error argv "C:\\YBouraze\\apps\\nodejs\\node.exe" "C:\\YBouraze\\apps\\nodejs\\node_modules\\npm\\bin\\npm-cli.js" "start"
+16 error node v6.9.1
+17 error npm  v3.10.8
+18 error code ENOSYS
+19 error errno ENOSYS
+20 error syscall kill
+21 error kill ENOSYS
+22 error If you need help, you may report this error at:
+22 error     <https://github.com/npm/npm/issues>
+23 verbose exit [ 1, true ]

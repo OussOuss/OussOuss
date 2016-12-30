@@ -1,4 +1,5 @@
 export class Member {
-  memberId: number;
-  name: string;
+  constructor(
+    public memberId: number,
+    public name: string) { }
 }
