@@ -41,12 +41,12 @@ server.register({
         throw err; // something bad happened loading the plugin
     }
 
-// Start the server
-server.start((err) => {
+    // Start the server
+    server.start((err) => {
 
-    if (err) {
-        throw err;
-    }
-    server.log('Server running at:', server.info.uri);
-});
+        if (err) {
+            throw err;
+        }
+        server.log('Server running at:', server.info.uri);
+    });
 });
