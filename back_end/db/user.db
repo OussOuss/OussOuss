@@ -1,0 +1,3 @@
+db.user.insert( [
+            {memberId: 1, name: 'OussOuss',tel:'+695649454615',emailPrincipal:'oussouss@gmail.com',passworld:'123456',adresse:'Paris - France' }
+] )
